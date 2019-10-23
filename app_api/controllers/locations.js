@@ -40,6 +40,10 @@ const locationsCreate = (req, res) => {
 const locationsListByDistance = async (req, res) => {
     const lng = parseFloat(req.query.lng);
     const lat = parseFloat(req.query.lat);
+    let maxD = 20000;
+    if(req.query.maxDistance){
+        maxD = parseInt(req.query.maxDistance);    
+    } 
     const near = {
         type: "Point",
         coordinates: [lng, lat]
@@ -48,7 +52,7 @@ const locationsListByDistance = async (req, res) => {
         distanceField: "distance.calculated",
         key: 'coords',
         spherical: true,
-        maxDistance: 20000,
+        maxDistance: maxD,
         limit: 10
     };
     if (!lng || !lat) {
@@ -64,7 +68,7 @@ const locationsListByDistance = async (req, res) => {
                 $geoNear: {
                     near,
                     distanceField: "distance",
-                    maxDistance: 100
+                    maxDistance: maxD
                 }
             }
         ]);
@@ -77,7 +81,8 @@ const locationsListByDistance = async (req, res) => {
                 address: result.address,
                 rating: result.rating,
                 facilities: result.facilities,
-                distance: `${result.distance.toFixed()}m`
+                // remove m
+                distance: `${result.distance.toFixed()}`
             }
         });
         //console.log(locations);
