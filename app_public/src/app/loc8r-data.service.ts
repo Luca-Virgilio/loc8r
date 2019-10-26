@@ -12,8 +12,10 @@ export class Loc8rDataService {
   private apiBaseUrl = 'http://localhost:3000/api';
 
   public getLocations(lat: number, lng: number): Promise<Location[]> {
-    //const lng: number = -0.7992599;
-    //const lat: number = 51.378091;
+
+    // sett lng and lat for testing
+    lng = -0.7992599;
+    lat = 51.378091;
     const maxDistance: number = 20000;
     const url: string = `${this.apiBaseUrl}/locations?lng=${lng}&lat=${lat}&maxDistance=${maxDistance}`;
     //console.log(url);
@@ -27,4 +29,15 @@ export class Loc8rDataService {
     console.error('Something has gone wrong', error);
     return Promise.reject(error.message || error);
   }
+
+  public getLocationById(locationId: string): Promise<Location> {
+    const url: string = `${this.apiBaseUrl}/locations/${locationId}`;
+    //console.log(locationId);
+    return this.http
+      .get(url)
+      .toPromise()
+      .then(response => response as Location)
+      .catch(this.handleError);
+  }
+
 }

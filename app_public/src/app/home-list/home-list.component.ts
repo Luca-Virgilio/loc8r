@@ -35,6 +35,7 @@ export class HomeListComponent implements OnInit {
       .then(foundLocations => {
         this.message = foundLocations.length > 0 ? '' :'No locations found';
         this.locations = foundLocations;
+        //console.log(this.locations);
       });
   }
   private showError(error: any): void {
