@@ -17,7 +17,8 @@ import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 import { LocationDetailsComponent } from './location-details/location-details.component';
 import { DetailsPageComponent } from './details-page/details-page.component';
 import { MostRecentFirstPipe } from './most-recent-first.pipe';
-
+// data binding in form field 
+import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeListComponent,
@@ -49,7 +50,9 @@ import { MostRecentFirstPipe } from './most-recent-first.pipe';
         path: 'location/:locationId',
         component: DetailsPageComponent
       }
-    ])
+    ]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [FrameworkComponent]
