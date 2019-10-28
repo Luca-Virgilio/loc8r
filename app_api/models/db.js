@@ -43,6 +43,6 @@ process.on('SIGTERM', () => {
     });
 });
 
-
-// object of the database
+// BRING IN YOUR SCHEMAS & MODELS
 require('./locations');
+require('./users');
