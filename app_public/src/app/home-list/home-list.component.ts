@@ -3,17 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Loc8rDataService } from '../loc8r-data.service';
 // geolocalization service 
 import { GeolocationService } from '../geolocation.service';
+// import Location definition
+import { Location } from '../location';
 
-
-export class Location {
-  _id: string;
-  name: string;
-  distance: number;
-  address: string;
-  rating: number;
-  facilities: string[];
-  reviews: any[];
-}
 
 @Component({
   selector: 'app-home-list',

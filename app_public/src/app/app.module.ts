@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // module to create http request
 import { HttpClientModule } from '@angular/common/http';
-// router module to routing the page
-import { RouterModule } from '@angular/router';
+// routing file
+import { AppRoutingModule } from './app-routing/app-routing.module';
+
 //import { AppComponent } from './app.component';
 import { HomeListComponent } from './home-list/home-list.component';
 import { DistancePipe } from './distance.pipe';
@@ -37,20 +38,7 @@ import{ FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: HomepageComponent
-      },
-      {
-        path: 'about',
-        component: AboutComponent
-      },
-      {
-        path: 'location/:locationId',
-        component: DetailsPageComponent
-      }
-    ]),
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
