@@ -27,8 +27,8 @@ const getAuthor = (req, res, callback) => {
 };
 
 const reviewsCreate = (req, res) => {
-    getAuthor(req, res, callback => {
-        (req, res, userName) => {
+    const cb = (req, res, userName) => {
+        try {
             const locationId = req.params.locationid;
             if (locationId) {
                 Loc
@@ -49,9 +49,12 @@ const reviewsCreate = (req, res) => {
                     .json({
                         "message": "Location not found"
                     });
-                }
-        };
-    });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getAuthor(req, res, cb);
 };
 
     const doAddReview = (req, res, location, author) => {
